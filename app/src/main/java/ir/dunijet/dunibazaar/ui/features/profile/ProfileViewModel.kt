@@ -10,7 +10,7 @@ class ProfileViewModel(
     val address = mutableStateOf("")
     val postalCode = mutableStateOf("")
     val loginTime = mutableStateOf("")
-    val password = mutableStateOf("")
+
 
     val showLocationDialog = mutableStateOf(false)
 
@@ -18,7 +18,7 @@ class ProfileViewModel(
     fun loadUserData() {
         email.value = userRepository.getUserName()!!
         loginTime.value = userRepository.getUserLoginTime()
-        password.value = userRepository.getUserPassword()
+
 
         val location = userRepository.getUserLocation()
         address.value = location.first
@@ -33,9 +33,6 @@ class ProfileViewModel(
         userRepository.saveUserLocation(address, postalCode)
     }
 
-    fun setUserPassword(newPassword: String) {
-        userRepository.saveUserPassword(newPassword)
-        password.value = newPassword // Update UI after password change
-    }
+
 
 }

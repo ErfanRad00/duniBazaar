@@ -21,9 +21,8 @@ class UserRepositoryImpl(
 
         val result = apiService.signUp(jsonObject)
         if (result.success) {
-            TokenInMemory.refreshToken(username, result.token, password)
+            TokenInMemory.refreshToken(username, result.token)
             saveToken(result.token)
-            saveUserPassword(password)
             saveUserName(username)
             saveUserLoginTime()
 
@@ -43,9 +42,9 @@ class UserRepositoryImpl(
 
         val result = apiService.signIn(jsonObject)
         if (result.success) {
-            TokenInMemory.refreshToken(username, result.token, password)
+            TokenInMemory.refreshToken(username, result.token)
             saveToken(result.token)
-            saveUserPassword(password)
+
             saveUserName(username)
             saveUserLoginTime()
 
@@ -57,12 +56,12 @@ class UserRepositoryImpl(
     }
 
     override fun signOut() {
-        TokenInMemory.refreshToken(null, null, null)
+        TokenInMemory.refreshToken(null, null)
         sharedPref.edit().clear().apply()
     }
 
     override fun loadToken() {
-        TokenInMemory.refreshToken(getUserName(), getToken(), getUserPassword())
+        TokenInMemory.refreshToken(getUserName(), getToken())
     }
 
     override fun saveToken(newToken: String) {
@@ -102,15 +101,7 @@ class UserRepositoryImpl(
         return sharedPref.getString("login_time", "0")!!
     }
 
-    override fun saveUserPassword(password: String) {
 
-        sharedPref.edit().putString("userPassword1", password).apply()
-    }
-
-
-    override fun getUserPassword(): String {
-        return sharedPref.getString("userPassword1", "clickToChange")!!
-    }
 
 
 }

@@ -22,7 +22,6 @@ interface UserRepository {
     fun saveUserLoginTime()
     fun getUserLoginTime() :String
 
-    fun saveUserPassword(password:String)
-    fun getUserPassword():String
+
 
 }

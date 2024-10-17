@@ -68,7 +68,6 @@ fun ProfileScreen() {
             Spacer(modifier = Modifier.padding(top = 6.dp))
 
             ShowDataSection("Email Address", viewModel.email.value, null)
-            ShowDataSection("Password", viewModel.password.value , null)
             ShowDataSection("Address", viewModel.address.value) { viewModel.showLocationDialog.value = true }
             ShowDataSection("Postal Code", viewModel.postalCode.value) { viewModel.showLocationDialog.value = true }
             ShowDataSection("Login Time", styleTime(viewModel.loginTime.value.toLong()), null)

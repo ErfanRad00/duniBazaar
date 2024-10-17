@@ -10,10 +10,9 @@ object TokenInMemory {
 
     var password:String? =null
 
-    fun refreshToken(username: String? , newToken: String? , newPassword:String? ) {
+    fun refreshToken(username: String? , newToken: String?  ) {
         this.username = username
         this.token = newToken
-        this.password = newPassword
     }
 
 }
